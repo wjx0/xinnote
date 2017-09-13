@@ -1,0 +1,56 @@
+package ${package_name}.controller;
+
+import com.xin.note.common.enums.DeletedFlagEnum;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import com.github.pagehelper.Page;
+import ${package_name}.entity.${model};
+import ${package_name}.service.${model}Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+/**
+ * ${model}Controller
+ * Created by chang.xl on ${ctime}.
+ */
+@Controller
+@RequestMapping("/${modelLowerFirst}")
+public class ${model}Controller  {
+
+    private  static Logger logger = LoggerFactory.getLogger(${model}Controller.class);
+    @Autowired
+    private ${model}Service ${modelLowerFirst}Service;
+
+    @RequestMapping(value="/{id}",method=RequestMethod.GET)
+    public  @ResponseBody ${model} getOne(@PathVariable("id") String id){
+        ${model} ${modelLowerFirst} = new ${model}();
+        ${modelLowerFirst}.setId(new Long(id));
+        return ${modelLowerFirst}Service.selectByPrimaryKey(${modelLowerFirst});
+    }
+
+    @RequestMapping(value="/list/{pageNo}/{pageSize}",method=RequestMethod.GET)
+    public  @ResponseBody Page<${model}> list(@PathVariable("pageNo") int pageNo,@PathVariable("pageSize") int pageSize,${model} ${modelLowerFirst}){
+        ${modelLowerFirst}.setDeletedFlag(DeletedFlagEnum.NOTDELETED.getValue());
+        return ${modelLowerFirst}Service.selectPage(${modelLowerFirst},pageNo,pageSize);
+    }
+
+    @RequestMapping(value="/deleteLogical/{id}",method=RequestMethod.GET)
+    public  @ResponseBody int deleteOne(@PathVariable("id") String id){
+        ${model} ${modelLowerFirst} = new ${model}();
+        ${modelLowerFirst}.setId(new Long(id));
+        return ${modelLowerFirst}Service.deleteByPrimaryKeyLogical(${modelLowerFirst});
+    }
+
+    @RequestMapping(value="/deleteLogical",method=RequestMethod.GET)
+    public  @ResponseBody int logicalDeleteOne(){
+        ${model} ${modelLowerFirst} = new ${model}();
+        ${modelLowerFirst}.setId(new Long(1));
+        ${modelLowerFirst}.setRemark("测试用");
+        return ${modelLowerFirst}Service.deleteLogical(${modelLowerFirst});
+    }
+}
+

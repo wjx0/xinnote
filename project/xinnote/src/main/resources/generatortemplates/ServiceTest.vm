@@ -1,0 +1,177 @@
+package ${package_name}.service.impl;
+
+import com.github.pagehelper.Page;
+import com.xin.note.DemoApplication;
+import com.xin.note.TestBeanUtil;
+import ${package_name}.service.${model}Service;
+import com.xin.note.common.enums.DeletedFlagEnum;
+import ${package_name}.entity.${model};
+import com.xin.note.common.enums.LanguagesEnum;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
+import tk.mybatis.mapper.entity.Example;
+
+import java.util.List;
+
+@SpringBootTest(classes = DemoApplication.class)
+@RunWith(SpringRunner.class)
+public class ${model}ServiceImplTest {
+    @Autowired
+    private ${model}Service ${modelLowerFirst}Service;
+    private ${model} ${modelLowerFirst} = new ${model}();
+
+    @Before
+    public void initAndInsert() {
+        //将bean里填充上值
+        TestBeanUtil.fillBean(${modelLowerFirst});
+        int inserted = ${modelLowerFirst}Service.insert(${modelLowerFirst});
+        Assert.assertEquals(inserted, 1);
+        Assert.assertTrue(${modelLowerFirst}.getId().compareTo(0l) > 0);
+    }
+
+    @Test
+    @Rollback
+    @Transactional
+    public void testSelectByPrimaryKey() {
+        final ${model} ${modelLowerFirst} = ${modelLowerFirst}Service.selectByPrimaryKey(this.${modelLowerFirst});
+        Assert.assertNotNull(${modelLowerFirst});
+        Assert.assertEquals(this.${modelLowerFirst}.getId(), ${modelLowerFirst}.getId());
+    }
+
+    @Test
+    @Rollback
+    @Transactional
+    public void testSelectById() {
+        final ${model} ${modelLowerFirst} = ${modelLowerFirst}Service.selectById(this.${modelLowerFirst}.getId());
+        Assert.assertNotNull(${modelLowerFirst});
+        Assert.assertEquals(this.${modelLowerFirst}.getId(), ${modelLowerFirst}.getId());
+    }
+
+    @Test
+    @Rollback
+    @Transactional
+    public void testSelect() {
+        List<${model}> ${modelLowerFirst}List = ${modelLowerFirst}Service.select(null);
+        Assert.assertNotNull(${modelLowerFirst}List);
+        Assert.assertTrue(${modelLowerFirst}List.size() > 0);
+        ${model} ${modelLowerFirst} = new ${model}();
+        ${modelLowerFirst}.setId(this.${modelLowerFirst}.getId());
+        ${modelLowerFirst}List = ${modelLowerFirst}Service.select(${modelLowerFirst});
+        Assert.assertNotNull(${modelLowerFirst}List);
+        Assert.assertTrue(${modelLowerFirst}List.size() == 1);
+    }
+
+    @Test
+    @Rollback
+    @Transactional
+    public void testSelectPage() {
+        //先插入10条数据
+        for (int i = 0; i < 10; i++) {
+            ${modelLowerFirst}.setId(null);
+            ${modelLowerFirst}Service.insert(${modelLowerFirst});
+        }
+        //检查分页
+        Page<${model}> page = ${modelLowerFirst}Service.selectPage(null, 2, 3);
+        Assert.assertTrue(page.size() == 3);
+        Assert.assertTrue(page.getPageSize() == 3);
+        Assert.assertTrue(page.getStartRow() == 3);
+        Assert.assertTrue(page.getPageNum() == 2);
+        //检查查询条件
+        ${model} ${modelLowerFirst} = new ${model}();
+        ${modelLowerFirst}.setId(this.${modelLowerFirst}.getId());
+        page = ${modelLowerFirst}Service.selectPage(${modelLowerFirst}, 1, 100);
+        Assert.assertTrue(page.size() == 1);
+
+    }
+
+    @Test
+    @Rollback
+    @Transactional
+    public void testDeleteLogical() {
+        ${model} ${modelLowerFirst}ToBeDeleted = new ${model}();
+        ${modelLowerFirst}ToBeDeleted.setId(${modelLowerFirst}.getId());
+        Assert.assertEquals(${modelLowerFirst}Service.deleteLogical(${modelLowerFirst}ToBeDeleted), 1);
+    }
+
+    @Test
+    @Rollback
+    @Transactional
+    public void testDeleteByPrimaryKeyLogical() {
+        ${model} ${modelLowerFirst}ToBeDeleted = new ${model}();
+        ${modelLowerFirst}ToBeDeleted.setDeletedFlag(DeletedFlagEnum.NOTDELETED.getValue());
+        ${modelLowerFirst}ToBeDeleted.setId(${modelLowerFirst}.getId());
+        //先更新为未删除
+        ${modelLowerFirst}Service.updateByPrimaryKeySelective(${modelLowerFirst}ToBeDeleted);
+        //验证下当前是未删除状态
+        Assert.assertEquals(${modelLowerFirst}Service.selectByPrimaryKey(${modelLowerFirst}ToBeDeleted).getDeletedFlag(),DeletedFlagEnum.NOTDELETED.getValue());
+        //调用测试方法
+        Assert.assertEquals(${modelLowerFirst}Service.deleteByPrimaryKeyLogical(${modelLowerFirst}ToBeDeleted), 1);
+        //验证下当前是已删除状态
+        Assert.assertEquals(${modelLowerFirst}Service.selectByPrimaryKey(${modelLowerFirst}ToBeDeleted).getDeletedFlag(),DeletedFlagEnum.DELETED.getValue());
+    }
+
+    @Test
+    @Rollback
+    @Transactional
+    public void testDeleteByIdLogical() {
+        ${model} ${modelLowerFirst}ToBeDeleted = new ${model}();
+        ${modelLowerFirst}ToBeDeleted.setDeletedFlag(DeletedFlagEnum.NOTDELETED.getValue());
+        ${modelLowerFirst}ToBeDeleted.setId(${modelLowerFirst}.getId());
+        //先更新为未删除
+        ${modelLowerFirst}Service.updateByPrimaryKeySelective(${modelLowerFirst}ToBeDeleted);
+        //验证下当前是未删除状态
+        Assert.assertEquals(${modelLowerFirst}Service.selectByPrimaryKey(${modelLowerFirst}ToBeDeleted).getDeletedFlag(),DeletedFlagEnum.NOTDELETED.getValue());
+        //调用测试方法
+        Assert.assertEquals(${modelLowerFirst}Service.deleteByIdLogical(${modelLowerFirst}.getId()), 1);
+        //验证下当前是已删除状态
+        Assert.assertEquals(${modelLowerFirst}Service.selectByPrimaryKey(${modelLowerFirst}ToBeDeleted).getDeletedFlag(),DeletedFlagEnum.DELETED.getValue());
+    }
+
+    @Test
+    @Rollback
+    @Transactional
+    public void testSelectByExample() {
+        //复杂查询条件生成的sql有问题，缺少应有的括号
+        Example example = new Example(${model}.class);
+        Example.Criteria criteria1 = example.createCriteria();
+        criteria1.andEqualTo("deletedFlag",DeletedFlagEnum.NOTDELETED.getValue()).andCondition("length(id)>",0);
+        Example.Criteria criteria2 = example.createCriteria();
+        criteria2.andCondition("length(deleted_Flag)>",0);
+        example.or(criteria2);
+        ${modelLowerFirst}Service.selectByExample(example);
+    }
+
+    @Test
+    @Rollback
+    @Transactional
+    public void testDelete() {
+        ${model} ${modelLowerFirst}ToBeDeleted = new ${model}();
+        ${modelLowerFirst}ToBeDeleted.setId(${modelLowerFirst}.getId());
+        Assert.assertNotNull(${modelLowerFirst}Service.selectByPrimaryKey(${modelLowerFirst}));
+        Assert.assertEquals(${modelLowerFirst}Service.delete(${modelLowerFirst}ToBeDeleted), 1);
+        Assert.assertNull(${modelLowerFirst}Service.selectByPrimaryKey(${modelLowerFirst}));
+    }
+
+    @Test
+    @Rollback
+    @Transactional
+    public void testDeleteById() {
+        Assert.assertNotNull(${modelLowerFirst}Service.selectById(${modelLowerFirst}.getId()));
+        Assert.assertTrue(${modelLowerFirst}Service.deleteById(${modelLowerFirst}.getId())==1);
+        Assert.assertNull(${modelLowerFirst}Service.selectById(${modelLowerFirst}.getId()));
+    }
+
+    @Test
+    @Rollback
+    @Transactional
+    public void testSelectByLanguage() {
+        ${modelLowerFirst}Service.selectByLanguage(${modelLowerFirst}, LanguagesEnum.JAPANESE);
+    }
+}

@@ -1,0 +1,11 @@
+package ${package_name}.service;
+
+import com.xin.note.common.MultiLanguageService;
+import ${package_name}.entity.${model};
+
+/**
+* ${model}Service接口,自动生成
+*/
+public interface ${model}Service extends MultiLanguageService<${model}> {
+
+}

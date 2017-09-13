@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xin.note.security.dao.UserInfoDAO">
+  <resultMap id="BaseResultMap" type="com.xin.note.security.entity.UserInfo">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+    <result column="STATUS" jdbcType="DECIMAL" property="status" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+    <result column="TYPE" jdbcType="DECIMAL" property="type" />
+    <result column="NICK_NAME" jdbcType="VARCHAR" property="nickName" />
+    <result column="LAST_LOGIN_IP" jdbcType="VARCHAR" property="lastLoginIp" />
+    <result column="CURRENT_LOGIN_IP" jdbcType="VARCHAR" property="currentLoginIp" />
+    <result column="LAST_LOGIN_TIME" jdbcType="TIMESTAMP" property="lastLoginTime" />
+    <result column="LOGIN_ATTEMPT_TIMES" jdbcType="DECIMAL" property="loginAttemptTimes" />
+    <result column="LOGIN_FAILD_TIME" jdbcType="TIMESTAMP" property="loginFaildTime" />
+    <result column="PASSWORD_FIRST_MODIFIED_FLAG" jdbcType="DECIMAL" property="passwordFirstModifiedFlag" />
+    <result column="PASSWORD_EXPIRE_TIME" jdbcType="TIMESTAMP" property="passwordExpireTime" />
+    <result column="LANGUAGE_ID" jdbcType="DECIMAL" property="languageId" />
+    <result column="LANGUAGE_CODE" jdbcType="VARCHAR" property="languageCode" />
+    <result column="TIMEZONE_ID" jdbcType="DECIMAL" property="timezoneId" />
+    <result column="TIMEZONE_CODE" jdbcType="VARCHAR" property="timezoneCode" />
+    <result column="TELEPHONE_NUM" jdbcType="VARCHAR" property="telephoneNum" />
+    <result column="POSITION_ID" jdbcType="DECIMAL" property="positionId" />
+    <result column="POSITION_CLASSIFY_CODE" jdbcType="VARCHAR" property="positionClassifyCode" />
+    <result column="BD_UNIT_ID" jdbcType="DECIMAL" property="bdUnitId" />
+    <result column="BD_ORG_ID" jdbcType="DECIMAL" property="bdOrgId" />
+    <result column="FM_ORG_ID" jdbcType="DECIMAL" property="fmOrgId" />
+    <result column="ADM_ORG_ID" jdbcType="DECIMAL" property="admOrgId" />
+    <result column="VENDOR_CODE" jdbcType="VARCHAR" property="vendorCode" />
+    <result column="JOB_NO" jdbcType="VARCHAR" property="jobNo" />
+    <result column="IS_RECHG_FLAG" jdbcType="CHAR" property="isRechgFlag" />
+    <result column="USING_FLAG" jdbcType="CHAR" property="usingFlag" />
+    <result column="DELETED_FLAG" jdbcType="CHAR" property="deletedFlag" />
+    <result column="GMT_CREATE" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="GMT_MODIFIED" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="CREATE_BY" jdbcType="VARCHAR" property="createBy" />
+    <result column="LAST_MODIFIED_BY" jdbcType="VARCHAR" property="lastModifiedBy" />
+    <result column="ENCODE" jdbcType="VARCHAR" property="encode" />
+    <result column="EXPIRED_TIME" jdbcType="TIMESTAMP" property="expiredTime" />
+    <result column="PASSPORT_NO" jdbcType="VARCHAR" property="passportNo" />
+    <result column="HAVE_IMAGE_FLAG" jdbcType="CHAR" property="haveImageFlag" />
+    <result column="LEADER_ID" jdbcType="DECIMAL" property="leaderId" />
+    <result column="HAVE_PHOTO_FLAG" jdbcType="CHAR" property="havePhotoFlag" />
+    <result column="CLASSIFY_LEVEL" jdbcType="VARCHAR" property="classifyLevel" />
+    <result column="SAP_ORDER" jdbcType="VARCHAR" property="sapOrder" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="LEADER_BU" jdbcType="DECIMAL" property="leaderBu" />
+    <result column="QUERY_SELF_FLAG" jdbcType="CHAR" property="querySelfFlag" />
+    <result column="VERSION_FLAG" jdbcType="CHAR" property="versionFlag" />
+    <result column="PASSPORT_EXPIRED_DATE" jdbcType="DATE" property="passportExpiredDate" />
+    <result column="HR_CODE" jdbcType="VARCHAR" property="hrCode" />
+    <result column="HR_NAME" jdbcType="OTHER" property="hrName" />
+    <result column="ORIGIN_FLAG" jdbcType="CHAR" property="originFlag" />
+    <result column="ORIGIN_APP" jdbcType="VARCHAR" property="originApp" />
+    <result column="MODIFICATION_NUM" jdbcType="DECIMAL" property="modificationNum" />
+    <result column="SIGN_IMAGE" jdbcType="BLOB" property="signImage" />
+  </resultMap>
+</mapper>

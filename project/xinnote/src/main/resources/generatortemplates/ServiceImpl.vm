@@ -1,0 +1,19 @@
+package ${package_name}.service.impl;
+
+import com.xin.note.common.MultiLanguageServiceImpl;
+import ${package_name}.dao.${model}DAO;
+import ${package_name}.entity.${model};
+import ${package_name}.service.${model}Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+/**
+* ${model}Service实现,
+*/
+@Service
+@Transactional
+public class ${model}ServiceImpl extends MultiLanguageServiceImpl<${model}> implements ${model}Service {
+    @Autowired
+    private ${model}DAO ${modelLowerFirst}DAO;
+
+}

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xin.note.security.dao.ResourceInfoDAO">
+  <resultMap id="BaseResultMap" type="com.xin.note.security.entity.ResourceInfo">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="DESCRIPTION" jdbcType="VARCHAR" property="description" />
+    <result column="URL" jdbcType="VARCHAR" property="url" />
+    <result column="TYPE" jdbcType="DECIMAL" property="type" />
+    <result column="STATUS" jdbcType="DECIMAL" property="status" />
+    <result column="CODE" jdbcType="VARCHAR" property="code" />
+    <result column="CONFIGURATION" jdbcType="VARCHAR" property="configuration" />
+    <result column="MODULE_NAME" jdbcType="VARCHAR" property="moduleName" />
+    <result column="PARENT_ID" jdbcType="DECIMAL" property="parentId" />
+    <result column="USING_FLAG" jdbcType="CHAR" property="usingFlag" />
+    <result column="DELETED_FLAG" jdbcType="CHAR" property="deletedFlag" />
+    <result column="GMT_CREATE" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="GMT_MODIFIED" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="CREATE_BY" jdbcType="VARCHAR" property="createBy" />
+    <result column="LAST_MODIFIED_BY" jdbcType="VARCHAR" property="lastModifiedBy" />
+    <result column="ORDER_INDEX" jdbcType="DECIMAL" property="orderIndex" />
+    <result column="INTERNET_FLAG" jdbcType="CHAR" property="internetFlag" />
+    <result column="ICON_NAME" jdbcType="VARCHAR" property="iconName" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="ORIGIN_APP" jdbcType="VARCHAR" property="originApp" />
+    <result column="ORIGIN_FLAG" jdbcType="VARCHAR" property="originFlag" />
+    <result column="MODIFICATION_NUM" jdbcType="DECIMAL" property="modificationNum" />
+  </resultMap>
+
+  <select id="getResourcesByRoleId" resultType="com.xin.note.security.entity.ResourceInfo" parameterType="long">
+    select RESOURCE_INFO.* from RESOURCE_INFO  inner join ROLE_RESOURCE on RESOURCE_INFO.id = ROLE_RESOURCE.RESOURCE_ID
+    where ROLE_RESOURCE.ROLE_ID = #{roleId}
+  </select>
+</mapper>
