@@ -6,7 +6,8 @@ import org.apache.ibatis.cache.CacheKey;
 
 /**
  * @author xin
- * 因为原分页插件row_id参数与表中字段可能冲突的问题，对源代码覆盖修改为row_ids,该类加载顺序优先,会将jar包里相同class覆盖掉
+ * 因为原分页插件row_id参数与表中字段可能冲突的问题，
+ * 对源代码覆盖修改为row_ids,该类加载顺序优先,会将jar包里相同class覆盖掉
  */
 public class OracleDialect extends AbstractHelperDialect {
 

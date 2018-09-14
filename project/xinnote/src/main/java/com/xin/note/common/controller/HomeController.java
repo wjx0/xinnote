@@ -41,10 +41,20 @@ public class HomeController {
             req.setAttribute("msg","超过重试次数 ,请30秒后重试");
             return"login";
         } catch ( AuthenticationException ae ) {
-            //unexpected error?
+            req.setAttribute("msg","登录出错");
+            return"login";
         }
+
         req.getSession().setAttribute("username",username);
-        return "welcome";
+
+        if(SecurityUtils.getSubject().hasRole("houtai")){
+            return "index";
+        }else{
+            return "welcome";
+        }
+
+
+
     }
 
 }

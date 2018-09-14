@@ -33,18 +33,11 @@ public abstract class EntityBean<K extends Serializable> implements Serializable
     @Column(name = "LAST_MODIFIED_BY")
     private String lastModifiedBy;
 
-
     @Column(name = "MODIFICATION_NUM")
     private Integer modificationNum;
 
     @Column(name = "REMARK")
     private String remark;
-
-    @Column(name = "ORIGIN_APP")
-    private String originApp;
-
-    @Column(name = "ORIGIN_FLAG")
-    private String originFlag;
 
     public String getDeletedFlag() {
         return deletedFlag;
@@ -101,22 +94,5 @@ public abstract class EntityBean<K extends Serializable> implements Serializable
     public void setRemark(String remark) {
         this.remark = remark;
     }
-
-    public String getOriginApp() {
-        return originApp;
-    }
-
-    public void setOriginApp(String originApp) {
-        this.originApp = originApp;
-    }
-
-    public String getOriginFlag() {
-        return originFlag;
-    }
-
-    public void setOriginFlag(String originFlag) {
-        this.originFlag = originFlag;
-    }
-
 
 }

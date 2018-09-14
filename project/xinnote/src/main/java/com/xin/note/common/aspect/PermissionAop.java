@@ -15,22 +15,23 @@
  */
 package com.xin.note.common.aspect;
 
-import com.xin.note.common.annotation.Permission;
-import com.xin.note.common.exception.NoPermissionException;
-import com.xin.note.common.listener.ConfigListener;
-import com.xin.note.security.entity.UserInfo;
-import org.apache.shiro.SecurityUtils;
-import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
-import org.aspectj.lang.reflect.MethodSignature;
-import org.springframework.stereotype.Component;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
+        import com.xin.note.common.annotation.Permission;
+        import com.xin.note.common.exception.NoPermissionException;
+        import com.xin.note.common.listener.ConfigListener;
+        import com.xin.note.security.entity.UserInfo;
+        import org.apache.shiro.SecurityUtils;
+        import org.apache.shiro.subject.Subject;
+        import org.aspectj.lang.ProceedingJoinPoint;
+        import org.aspectj.lang.annotation.Around;
+        import org.aspectj.lang.annotation.Aspect;
+        import org.aspectj.lang.annotation.Pointcut;
+        import org.aspectj.lang.reflect.MethodSignature;
+        import org.springframework.stereotype.Component;
+        import org.springframework.web.context.request.RequestContextHolder;
+        import org.springframework.web.context.request.ServletRequestAttributes;
 
-import javax.servlet.http.HttpServletRequest;
-import java.lang.reflect.Method;
+        import javax.servlet.http.HttpServletRequest;
+        import java.lang.reflect.Method;
 
 /**
  * AOP 权限自定义检查
@@ -74,13 +75,24 @@ public class PermissionAop {
         Method method = ms.getMethod();
         Permission permission = method.getAnnotation(Permission.class);
         Object[] permissions = permission.value();
-        boolean hasPermission = this.checkAll();
-        if (hasPermission) {
+//        boolean hasPermission = this.checkAll();
+//        if (hasPermission) {
+//            return point.proceed();
+//        } else {
+//            throw new NoPermissionException("NoPermission");
+//        }
+        Subject subject=SecurityUtils.getSubject();
+        int i = 0;
+        for(Object role : permissions){
+            if(subject.hasRole(role.toString())){
+                i = 1;
+            }
+        }
+        if(i==1){
             return point.proceed();
-        } else {
+        }else{
             throw new NoPermissionException("NoPermission");
         }
-
     }
 
 }

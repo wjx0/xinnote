@@ -1,5 +1,6 @@
 package com.xin.note;
 
+import com.xin.note.common.utils.MybatisGeneratorUtil;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 /**
 * ${model}Service实现,
+* Created by xin on ${ctime}.
 */
 @Service
 @Transactional

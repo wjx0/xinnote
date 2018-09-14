@@ -5,6 +5,7 @@ import ${package_name}.entity.${model};
 
 /**
 * ${model}Service接口,自动生成
+* Created by xin on ${ctime}.
 */
 public interface ${model}Service extends MultiLanguageService<${model}> {
 

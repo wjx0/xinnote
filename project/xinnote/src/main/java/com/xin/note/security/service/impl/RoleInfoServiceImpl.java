@@ -8,13 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
-* RoleInfoService实现,
-*/
 @Service
 @Transactional
 public class RoleInfoServiceImpl extends MultiLanguageServiceImpl<RoleInfo> implements RoleInfoService {
+
     @Autowired
     private RoleInfoDAO roleInfoDAO;
-
 }

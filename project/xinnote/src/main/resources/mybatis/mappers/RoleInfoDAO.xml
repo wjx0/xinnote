@@ -6,22 +6,19 @@
       WARNING - @mbg.generated
     -->
     <id column="ID" jdbcType="DECIMAL" property="id" />
-    <result column="NAME" jdbcType="VARCHAR" property="name" />
-    <result column="DESCRIPTION" jdbcType="VARCHAR" property="description" />
+    <result column="ROLE_NAME" jdbcType="VARCHAR" property="roleName" />
     <result column="USING_FLAG" jdbcType="CHAR" property="usingFlag" />
     <result column="DELETED_FLAG" jdbcType="CHAR" property="deletedFlag" />
     <result column="GMT_CREATE" jdbcType="TIMESTAMP" property="gmtCreate" />
     <result column="GMT_MODIFIED" jdbcType="TIMESTAMP" property="gmtModified" />
     <result column="CREATE_BY" jdbcType="VARCHAR" property="createBy" />
     <result column="LAST_MODIFIED_BY" jdbcType="VARCHAR" property="lastModifiedBy" />
-    <result column="ORIGIN_FLAG" jdbcType="CHAR" property="originFlag" />
-    <result column="ORIGIN_APP" jdbcType="VARCHAR" property="originApp" />
     <result column="REMARK" jdbcType="VARCHAR" property="remark" />
     <result column="MODIFICATION_NUM" jdbcType="DECIMAL" property="modificationNum" />
   </resultMap>
-    <select id="getRolesByUserId" resultType="com.xin.note.security.entity.RoleInfo" parameterType="long">
-        select role_info.* from role_info  inner join user_role on role_info.id = user_role.role_id
-        where user_role.user_id = #{userId}
-    </select>
 
+  <select id="getRolesByUserId" parameterType="long" resultMap="BaseResultMap">
+    select role_info.* from role_info  inner join user_role on role_info.id = user_role.role_id
+    where user_role.user_id = #{userId}
+  </select>
 </mapper>

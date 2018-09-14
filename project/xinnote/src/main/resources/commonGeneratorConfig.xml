@@ -32,9 +32,9 @@
         </jdbcConnection>
 
         <!-- 非必需，类型处理器，在数据库类型和java类型之间的转换控制-->
-        <javaTypeResolver>
-            <property name="forceBigDecimals" value="true"/>
-        </javaTypeResolver>
+        <!--<javaTypeResolver>-->
+            <!--<property name="forceBigDecimals" value="true"/>-->
+        <!--</javaTypeResolver>-->
 
         <!-- Model模型生成器,用来生成含有主键key的类，记录类 以及查询Example类
             targetPackage     指定生成的model生成所在的包名
@@ -64,7 +64,7 @@
             <property name="enableSubPackages" value="true"/>
             <property name="methodNameCalculator" value=""/>
         </javaClientGenerator>
-        <table tableName="resource_info"  enableCountByExample="false"
+        <table tableName="USER_INFO"  enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"
                enableSelectByExample="false"
@@ -108,7 +108,7 @@
                     delimitedColumnName:true ,匹配column的值和数据库列的名称 大小写完全匹配，false 忽略大小写匹配
                     是否限定表的列名，即固定表列在Model中的名称
             -->
-            <ignoreColumn column="PLAN_ID" delimitedColumnName="true"/>
+           <!-- <ignoreColumn column="PLAN_ID" delimitedColumnName="true"/>-->
             <!--optional.覆盖MBG对Model 的生成规则
                  column: 数据库的列名
                  javaType: 对应的Java数据类型的完全限定名

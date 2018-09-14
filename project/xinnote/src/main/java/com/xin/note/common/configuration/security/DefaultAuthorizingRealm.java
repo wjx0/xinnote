@@ -1,8 +1,6 @@
 package com.xin.note.common.configuration.security;
 
-import com.xin.note.security.dao.ResourceInfoDAO;
 import com.xin.note.security.dao.RoleInfoDAO;
-import com.xin.note.security.entity.ResourceInfo;
 import com.xin.note.security.entity.RoleInfo;
 import com.xin.note.security.entity.UserInfo;
 import com.xin.note.security.enums.UseStatusEnum;
@@ -26,24 +24,24 @@ public class DefaultAuthorizingRealm extends AuthorizingRealm {
     private UserInfoService userInfoService;
     @Autowired
     private RoleInfoDAO roleInfoDAO;
-    @Autowired
-    private ResourceInfoDAO resourceInfoDAO;
+//    @Autowired
+//    private ResourceInfoDAO resourceInfoDAO;
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         UserInfo userInfo = (UserInfo)principals.getPrimaryPrincipal();
         Set<String> roleNameSet = new HashSet<>();
-        Set<String> urls = new HashSet<>();
+//        Set<String> urls = new HashSet<>();
         List<RoleInfo> roleList = roleInfoDAO.getRolesByUserId(userInfo.getId());
         for(RoleInfo role:roleList){
-            roleNameSet.add(role.getName());
-            List<ResourceInfo> resources = resourceInfoDAO.getResourcesByRoleId(role.getId());
-            for(ResourceInfo resource:resources){
-                urls.add(resource.getUrl());
-            }
+            roleNameSet.add(role.getRoleName());
+//            List<ResourceInfo> resources = resourceInfoDAO.getResourcesByRoleId(role.getId());
+//            for(ResourceInfo resource:resources){
+//                urls.add(resource.getUrl());
+//            }
         }
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
         info.addRoles(roleNameSet);
-        info.addStringPermissions(urls);
+//        info.addStringPermissions(urls);
         return info;
     }
 
@@ -56,7 +54,7 @@ public class DefaultAuthorizingRealm extends AuthorizingRealm {
         if(userInfo==null){
             throw new UnknownAccountException("用户名不存在");
         }
-        if(UseStatusEnum.DISABLE.getValue().equals(userInfo.getStatus().toString())){
+        if(UseStatusEnum.DISABLE.getValue().equals(userInfo.getUsingFlag().toString())){
             throw new LockedAccountException("账户被锁定");
         }
         return new SimpleAuthenticationInfo(userInfo, userInfo.getPassword(),null, getName());

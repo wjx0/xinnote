@@ -1,10 +1,10 @@
 package com.xin.note.common.configuration;
 
 
-import com.alibaba.druid.support.http.WebStatFilter;
+        import com.alibaba.druid.support.http.WebStatFilter;
 
-import javax.servlet.annotation.WebFilter;
-import javax.servlet.annotation.WebInitParam;
+        import javax.servlet.annotation.WebFilter;
+        import javax.servlet.annotation.WebInitParam;
 
 @WebFilter(filterName="DruidStatFilter",urlPatterns="/*",
         initParams={

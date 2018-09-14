@@ -1,10 +1,9 @@
 package com.xin.note.security.entity;
 
 import com.xin.note.common.EntityBean;
-import javax.persistence.*;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
+import javax.persistence.*;
 
 @Table(name = "USER_INFO")
 public class UserInfo extends EntityBean<Long> implements Serializable {
@@ -19,17 +18,11 @@ public class UserInfo extends EntityBean<Long> implements Serializable {
     @Column(name = "PASSWORD")
     private String password;
 
-    @Column(name = "STATUS")
-    private Long status;
-
     @Column(name = "EMAIL")
     private String email;
 
     @Column(name = "TYPE")
     private Long type;
-
-    @Column(name = "NICK_NAME")
-    private String nickName;
 
     @Column(name = "LAST_LOGIN_IP")
     private String lastLoginIp;
@@ -52,50 +45,26 @@ public class UserInfo extends EntityBean<Long> implements Serializable {
     @Column(name = "PASSWORD_EXPIRE_TIME")
     private Date passwordExpireTime;
 
-    @Column(name = "LANGUAGE_ID")
-    private Long languageId;
-
-    @Column(name = "LANGUAGE_CODE")
-    private String languageCode;
-
-    @Column(name = "TIMEZONE_ID")
-    private Long timezoneId;
-
-    @Column(name = "TIMEZONE_CODE")
-    private String timezoneCode;
-
-    @Column(name = "TELEPHONE_NUM")
-    private String telephoneNum;
-
-    @Column(name = "POSITION_ID")
-    private Long positionId;
-
-    @Column(name = "POSITION_CLASSIFY_CODE")
-    private String positionClassifyCode;
-
-    @Column(name = "BD_UNIT_ID")
-    private Long bdUnitId;
-
-    @Column(name = "BD_ORG_ID")
-    private Long bdOrgId;
-
-    @Column(name = "FM_ORG_ID")
-    private Long fmOrgId;
-
-    @Column(name = "ADM_ORG_ID")
-    private Long admOrgId;
-
-    @Column(name = "VENDOR_CODE")
-    private String vendorCode;
-
-    @Column(name = "JOB_NO")
-    private String jobNo;
-
-    @Column(name = "IS_RECHG_FLAG")
-    private String isRechgFlag;
+    @Column(name = "TELEPHONE")
+    private String telephone;
 
     @Column(name = "USING_FLAG")
     private String usingFlag;
+
+    @Column(name = "DELETED_FLAG")
+    private String deletedFlag;
+
+    @Column(name = "GMT_CREATE")
+    private Date gmtCreate;
+
+    @Column(name = "GMT_MODIFIED")
+    private Date gmtModified;
+
+    @Column(name = "CREATE_BY")
+    private String createBy;
+
+    @Column(name = "LAST_MODIFIED_BY")
+    private String lastModifiedBy;
 
     @Column(name = "ENCODE")
     private String encode;
@@ -103,41 +72,17 @@ public class UserInfo extends EntityBean<Long> implements Serializable {
     @Column(name = "EXPIRED_TIME")
     private Date expiredTime;
 
-    @Column(name = "PASSPORT_NO")
-    private String passportNo;
-
     @Column(name = "HAVE_IMAGE_FLAG")
     private String haveImageFlag;
 
-    @Column(name = "LEADER_ID")
-    private BigDecimal leaderId;
+    @Column(name = "REMARK")
+    private String remark;
 
-    @Column(name = "HAVE_PHOTO_FLAG")
-    private String havePhotoFlag;
+    @Column(name = "MODIFICATION_NUM")
+    private Integer modificationNum;
 
-    @Column(name = "CLASSIFY_LEVEL")
-    private String classifyLevel;
-
-    @Column(name = "SAP_ORDER")
-    private String sapOrder;
-
-    @Column(name = "LEADER_BU")
-    private BigDecimal leaderBu;
-
-    @Column(name = "QUERY_SELF_FLAG")
-    private String querySelfFlag;
-
-    @Column(name = "VERSION_FLAG")
-    private String versionFlag;
-
-    @Column(name = "PASSPORT_EXPIRED_DATE")
-    private Date passportExpiredDate;
-
-    @Column(name = "HR_CODE")
-    private String hrCode;
-
-    @Column(name = "HR_NAME")
-    private Object hrName;
+    @Column(name = "USER_NAME")
+    private String userName;
 
     @Column(name = "SIGN_IMAGE")
     private byte[] signImage;
@@ -187,20 +132,6 @@ public class UserInfo extends EntityBean<Long> implements Serializable {
     }
 
     /**
-     * @return STATUS
-     */
-    public Long getStatus() {
-        return status;
-    }
-
-    /**
-     * @param status
-     */
-    public void setStatus(Long status) {
-        this.status = status;
-    }
-
-    /**
      * @return EMAIL
      */
     public String getEmail() {
@@ -226,20 +157,6 @@ public class UserInfo extends EntityBean<Long> implements Serializable {
      */
     public void setType(Long type) {
         this.type = type;
-    }
-
-    /**
-     * @return NICK_NAME
-     */
-    public String getNickName() {
-        return nickName;
-    }
-
-    /**
-     * @param nickName
-     */
-    public void setNickName(String nickName) {
-        this.nickName = nickName == null ? null : nickName.trim();
     }
 
     /**
@@ -341,199 +258,17 @@ public class UserInfo extends EntityBean<Long> implements Serializable {
     }
 
     /**
-     * @return LANGUAGE_ID
+     * @return TELEPHONE
      */
-    public Long getLanguageId() {
-        return languageId;
+    public String getTelephone() {
+        return telephone;
     }
 
     /**
-     * @param languageId
+     * @param telephone
      */
-    public void setLanguageId(Long languageId) {
-        this.languageId = languageId;
-    }
-
-    /**
-     * @return LANGUAGE_CODE
-     */
-    public String getLanguageCode() {
-        return languageCode;
-    }
-
-    /**
-     * @param languageCode
-     */
-    public void setLanguageCode(String languageCode) {
-        this.languageCode = languageCode == null ? null : languageCode.trim();
-    }
-
-    /**
-     * @return TIMEZONE_ID
-     */
-    public Long getTimezoneId() {
-        return timezoneId;
-    }
-
-    /**
-     * @param timezoneId
-     */
-    public void setTimezoneId(Long timezoneId) {
-        this.timezoneId = timezoneId;
-    }
-
-    /**
-     * @return TIMEZONE_CODE
-     */
-    public String getTimezoneCode() {
-        return timezoneCode;
-    }
-
-    /**
-     * @param timezoneCode
-     */
-    public void setTimezoneCode(String timezoneCode) {
-        this.timezoneCode = timezoneCode == null ? null : timezoneCode.trim();
-    }
-
-    /**
-     * @return TELEPHONE_NUM
-     */
-    public String getTelephoneNum() {
-        return telephoneNum;
-    }
-
-    /**
-     * @param telephoneNum
-     */
-    public void setTelephoneNum(String telephoneNum) {
-        this.telephoneNum = telephoneNum == null ? null : telephoneNum.trim();
-    }
-
-    /**
-     * @return POSITION_ID
-     */
-    public Long getPositionId() {
-        return positionId;
-    }
-
-    /**
-     * @param positionId
-     */
-    public void setPositionId(Long positionId) {
-        this.positionId = positionId;
-    }
-
-    /**
-     * @return POSITION_CLASSIFY_CODE
-     */
-    public String getPositionClassifyCode() {
-        return positionClassifyCode;
-    }
-
-    /**
-     * @param positionClassifyCode
-     */
-    public void setPositionClassifyCode(String positionClassifyCode) {
-        this.positionClassifyCode = positionClassifyCode == null ? null : positionClassifyCode.trim();
-    }
-
-    /**
-     * @return BD_UNIT_ID
-     */
-    public Long getBdUnitId() {
-        return bdUnitId;
-    }
-
-    /**
-     * @param bdUnitId
-     */
-    public void setBdUnitId(Long bdUnitId) {
-        this.bdUnitId = bdUnitId;
-    }
-
-    /**
-     * @return BD_ORG_ID
-     */
-    public Long getBdOrgId() {
-        return bdOrgId;
-    }
-
-    /**
-     * @param bdOrgId
-     */
-    public void setBdOrgId(Long bdOrgId) {
-        this.bdOrgId = bdOrgId;
-    }
-
-    /**
-     * @return FM_ORG_ID
-     */
-    public Long getFmOrgId() {
-        return fmOrgId;
-    }
-
-    /**
-     * @param fmOrgId
-     */
-    public void setFmOrgId(Long fmOrgId) {
-        this.fmOrgId = fmOrgId;
-    }
-
-    /**
-     * @return ADM_ORG_ID
-     */
-    public Long getAdmOrgId() {
-        return admOrgId;
-    }
-
-    /**
-     * @param admOrgId
-     */
-    public void setAdmOrgId(Long admOrgId) {
-        this.admOrgId = admOrgId;
-    }
-
-    /**
-     * @return VENDOR_CODE
-     */
-    public String getVendorCode() {
-        return vendorCode;
-    }
-
-    /**
-     * @param vendorCode
-     */
-    public void setVendorCode(String vendorCode) {
-        this.vendorCode = vendorCode == null ? null : vendorCode.trim();
-    }
-
-    /**
-     * @return JOB_NO
-     */
-    public String getJobNo() {
-        return jobNo;
-    }
-
-    /**
-     * @param jobNo
-     */
-    public void setJobNo(String jobNo) {
-        this.jobNo = jobNo == null ? null : jobNo.trim();
-    }
-
-    /**
-     * @return IS_RECHG_FLAG
-     */
-    public String getIsRechgFlag() {
-        return isRechgFlag;
-    }
-
-    /**
-     * @param isRechgFlag
-     */
-    public void setIsRechgFlag(String isRechgFlag) {
-        this.isRechgFlag = isRechgFlag == null ? null : isRechgFlag.trim();
+    public void setTelephone(String telephone) {
+        this.telephone = telephone == null ? null : telephone.trim();
     }
 
     /**
@@ -548,6 +283,76 @@ public class UserInfo extends EntityBean<Long> implements Serializable {
      */
     public void setUsingFlag(String usingFlag) {
         this.usingFlag = usingFlag == null ? null : usingFlag.trim();
+    }
+
+    /**
+     * @return DELETED_FLAG
+     */
+    public String getDeletedFlag() {
+        return deletedFlag;
+    }
+
+    /**
+     * @param deletedFlag
+     */
+    public void setDeletedFlag(String deletedFlag) {
+        this.deletedFlag = deletedFlag == null ? null : deletedFlag.trim();
+    }
+
+    /**
+     * @return GMT_CREATE
+     */
+    public Date getGmtCreate() {
+        return gmtCreate;
+    }
+
+    /**
+     * @param gmtCreate
+     */
+    public void setGmtCreate(Date gmtCreate) {
+        this.gmtCreate = gmtCreate;
+    }
+
+    /**
+     * @return GMT_MODIFIED
+     */
+    public Date getGmtModified() {
+        return gmtModified;
+    }
+
+    /**
+     * @param gmtModified
+     */
+    public void setGmtModified(Date gmtModified) {
+        this.gmtModified = gmtModified;
+    }
+
+    /**
+     * @return CREATE_BY
+     */
+    public String getCreateBy() {
+        return createBy;
+    }
+
+    /**
+     * @param createBy
+     */
+    public void setCreateBy(String createBy) {
+        this.createBy = createBy == null ? null : createBy.trim();
+    }
+
+    /**
+     * @return LAST_MODIFIED_BY
+     */
+    public String getLastModifiedBy() {
+        return lastModifiedBy;
+    }
+
+    /**
+     * @param lastModifiedBy
+     */
+    public void setLastModifiedBy(String lastModifiedBy) {
+        this.lastModifiedBy = lastModifiedBy == null ? null : lastModifiedBy.trim();
     }
 
     /**
@@ -579,20 +384,6 @@ public class UserInfo extends EntityBean<Long> implements Serializable {
     }
 
     /**
-     * @return PASSPORT_NO
-     */
-    public String getPassportNo() {
-        return passportNo;
-    }
-
-    /**
-     * @param passportNo
-     */
-    public void setPassportNo(String passportNo) {
-        this.passportNo = passportNo == null ? null : passportNo.trim();
-    }
-
-    /**
      * @return HAVE_IMAGE_FLAG
      */
     public String getHaveImageFlag() {
@@ -607,143 +398,45 @@ public class UserInfo extends EntityBean<Long> implements Serializable {
     }
 
     /**
-     * @return LEADER_ID
+     * @return REMARK
      */
-    public BigDecimal getLeaderId() {
-        return leaderId;
+    public String getRemark() {
+        return remark;
     }
 
     /**
-     * @param leaderId
+     * @param remark
      */
-    public void setLeaderId(BigDecimal leaderId) {
-        this.leaderId = leaderId;
+    public void setRemark(String remark) {
+        this.remark = remark == null ? null : remark.trim();
     }
 
     /**
-     * @return HAVE_PHOTO_FLAG
+     * @return MODIFICATION_NUM
      */
-    public String getHavePhotoFlag() {
-        return havePhotoFlag;
+    public Integer getModificationNum() {
+        return modificationNum;
     }
 
     /**
-     * @param havePhotoFlag
+     * @param modificationNum
      */
-    public void setHavePhotoFlag(String havePhotoFlag) {
-        this.havePhotoFlag = havePhotoFlag == null ? null : havePhotoFlag.trim();
+    public void setModificationNum(Integer modificationNum) {
+        this.modificationNum = modificationNum;
     }
 
     /**
-     * @return CLASSIFY_LEVEL
+     * @return USER_NAME
      */
-    public String getClassifyLevel() {
-        return classifyLevel;
+    public String getUserName() {
+        return userName;
     }
 
     /**
-     * @param classifyLevel
+     * @param userName
      */
-    public void setClassifyLevel(String classifyLevel) {
-        this.classifyLevel = classifyLevel == null ? null : classifyLevel.trim();
-    }
-
-    /**
-     * @return SAP_ORDER
-     */
-    public String getSapOrder() {
-        return sapOrder;
-    }
-
-    /**
-     * @param sapOrder
-     */
-    public void setSapOrder(String sapOrder) {
-        this.sapOrder = sapOrder == null ? null : sapOrder.trim();
-    }
-
-    /**
-     * @return LEADER_BU
-     */
-    public BigDecimal getLeaderBu() {
-        return leaderBu;
-    }
-
-    /**
-     * @param leaderBu
-     */
-    public void setLeaderBu(BigDecimal leaderBu) {
-        this.leaderBu = leaderBu;
-    }
-
-    /**
-     * @return QUERY_SELF_FLAG
-     */
-    public String getQuerySelfFlag() {
-        return querySelfFlag;
-    }
-
-    /**
-     * @param querySelfFlag
-     */
-    public void setQuerySelfFlag(String querySelfFlag) {
-        this.querySelfFlag = querySelfFlag == null ? null : querySelfFlag.trim();
-    }
-
-    /**
-     * @return VERSION_FLAG
-     */
-    public String getVersionFlag() {
-        return versionFlag;
-    }
-
-    /**
-     * @param versionFlag
-     */
-    public void setVersionFlag(String versionFlag) {
-        this.versionFlag = versionFlag == null ? null : versionFlag.trim();
-    }
-
-    /**
-     * @return PASSPORT_EXPIRED_DATE
-     */
-    public Date getPassportExpiredDate() {
-        return passportExpiredDate;
-    }
-
-    /**
-     * @param passportExpiredDate
-     */
-    public void setPassportExpiredDate(Date passportExpiredDate) {
-        this.passportExpiredDate = passportExpiredDate;
-    }
-
-    /**
-     * @return HR_CODE
-     */
-    public String getHrCode() {
-        return hrCode;
-    }
-
-    /**
-     * @param hrCode
-     */
-    public void setHrCode(String hrCode) {
-        this.hrCode = hrCode == null ? null : hrCode.trim();
-    }
-
-    /**
-     * @return HR_NAME
-     */
-    public Object getHrName() {
-        return hrName;
-    }
-
-    /**
-     * @param hrName
-     */
-    public void setHrName(Object hrName) {
-        this.hrName = hrName;
+    public void setUserName(String userName) {
+        this.userName = userName == null ? null : userName.trim();
     }
 
     /**
@@ -769,10 +462,8 @@ public class UserInfo extends EntityBean<Long> implements Serializable {
         sb.append(", id=").append(id);
         sb.append(", name=").append(name);
         sb.append(", password=").append(password);
-        sb.append(", status=").append(status);
         sb.append(", email=").append(email);
         sb.append(", type=").append(type);
-        sb.append(", nickName=").append(nickName);
         sb.append(", lastLoginIp=").append(lastLoginIp);
         sb.append(", currentLoginIp=").append(currentLoginIp);
         sb.append(", lastLoginTime=").append(lastLoginTime);
@@ -780,35 +471,19 @@ public class UserInfo extends EntityBean<Long> implements Serializable {
         sb.append(", loginFaildTime=").append(loginFaildTime);
         sb.append(", passwordFirstModifiedFlag=").append(passwordFirstModifiedFlag);
         sb.append(", passwordExpireTime=").append(passwordExpireTime);
-        sb.append(", languageId=").append(languageId);
-        sb.append(", languageCode=").append(languageCode);
-        sb.append(", timezoneId=").append(timezoneId);
-        sb.append(", timezoneCode=").append(timezoneCode);
-        sb.append(", telephoneNum=").append(telephoneNum);
-        sb.append(", positionId=").append(positionId);
-        sb.append(", positionClassifyCode=").append(positionClassifyCode);
-        sb.append(", bdUnitId=").append(bdUnitId);
-        sb.append(", bdOrgId=").append(bdOrgId);
-        sb.append(", fmOrgId=").append(fmOrgId);
-        sb.append(", admOrgId=").append(admOrgId);
-        sb.append(", vendorCode=").append(vendorCode);
-        sb.append(", jobNo=").append(jobNo);
-        sb.append(", isRechgFlag=").append(isRechgFlag);
+        sb.append(", telephone=").append(telephone);
         sb.append(", usingFlag=").append(usingFlag);
+        sb.append(", deletedFlag=").append(deletedFlag);
+        sb.append(", gmtCreate=").append(gmtCreate);
+        sb.append(", gmtModified=").append(gmtModified);
+        sb.append(", createBy=").append(createBy);
+        sb.append(", lastModifiedBy=").append(lastModifiedBy);
         sb.append(", encode=").append(encode);
         sb.append(", expiredTime=").append(expiredTime);
-        sb.append(", passportNo=").append(passportNo);
         sb.append(", haveImageFlag=").append(haveImageFlag);
-        sb.append(", leaderId=").append(leaderId);
-        sb.append(", havePhotoFlag=").append(havePhotoFlag);
-        sb.append(", classifyLevel=").append(classifyLevel);
-        sb.append(", sapOrder=").append(sapOrder);
-        sb.append(", leaderBu=").append(leaderBu);
-        sb.append(", querySelfFlag=").append(querySelfFlag);
-        sb.append(", versionFlag=").append(versionFlag);
-        sb.append(", passportExpiredDate=").append(passportExpiredDate);
-        sb.append(", hrCode=").append(hrCode);
-        sb.append(", hrName=").append(hrName);
+        sb.append(", remark=").append(remark);
+        sb.append(", modificationNum=").append(modificationNum);
+        sb.append(", userName=").append(userName);
         sb.append(", signImage=").append(signImage);
         sb.append("]");
         return sb.toString();
