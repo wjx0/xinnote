@@ -45,4 +45,6 @@ public class UserRoleVo extends UserInfo{
     public void setGmtCreateStart(Date gmtCreateStart) {
         this.gmtCreateStart = gmtCreateStart;
     }
+
+
 }

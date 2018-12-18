@@ -6,7 +6,7 @@
 </head>
 <body>
 <a href="/noteList">查询笔记列表</a><br>
-<a href="/userInfo/list/1/10">查询用户列表</a><br>
+<a href="/userInfo/userList">查询用户列表</a><br>
 <a href="/druid">监控数据源</a><br>
 <a href="/logout">退出系统</a><br>
 <a href="/actuator">actuator</a>

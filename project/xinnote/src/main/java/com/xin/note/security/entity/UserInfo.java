@@ -22,7 +22,7 @@ public class UserInfo extends EntityBean<Long> implements Serializable {
     private String email;
 
     @Column(name = "TYPE")
-    private Long type;
+    private String type;
 
     @Column(name = "LAST_LOGIN_IP")
     private String lastLoginIp;
@@ -148,14 +148,14 @@ public class UserInfo extends EntityBean<Long> implements Serializable {
     /**
      * @return TYPE
      */
-    public Long getType() {
+    public String getType() {
         return type;
     }
 
     /**
      * @param type
      */
-    public void setType(Long type) {
+    public void setType(String type) {
         this.type = type;
     }
 

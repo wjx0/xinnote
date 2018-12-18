@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 
 public interface UserInfoDAO extends MyMapper<UserInfo> {
-    public List<UserRoleVo> queryUserList();
+    public List<UserRoleVo> queryUserList(UserRoleVo userRoleVo);
 }

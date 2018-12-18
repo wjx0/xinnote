@@ -24,9 +24,9 @@ public class UserInfoServiceImpl extends MultiLanguageServiceImpl<UserInfo> impl
     private UserInfoDAO userInfoDAO;
 
     @Override
-    public Page<UserRoleVo> queryUserList(Integer pageNo, int pageSize) {
+    public Page<UserRoleVo> queryUserList(Integer pageNo, int pageSize, UserRoleVo userRoleVo) {
         Page<UserRoleVo> page = PageHelper.startPage(pageNo, pageSize);
-        userInfoDAO.queryUserList();
+        userInfoDAO.queryUserList(userRoleVo);
         return page;
     }
 }

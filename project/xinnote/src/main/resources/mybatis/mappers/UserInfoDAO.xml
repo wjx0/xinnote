@@ -9,7 +9,7 @@
     <result column="NAME" jdbcType="VARCHAR" property="name" />
     <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
     <result column="EMAIL" jdbcType="VARCHAR" property="email" />
-    <result column="TYPE" jdbcType="DECIMAL" property="type" />
+    <result column="TYPE" jdbcType="CHAR" property="type" />
     <result column="LAST_LOGIN_IP" jdbcType="VARCHAR" property="lastLoginIp" />
     <result column="CURRENT_LOGIN_IP" jdbcType="VARCHAR" property="currentLoginIp" />
     <result column="LAST_LOGIN_TIME" jdbcType="TIMESTAMP" property="lastLoginTime" />
@@ -38,7 +38,7 @@
     <result column="NAME" jdbcType="VARCHAR" property="name" />
     <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
     <result column="EMAIL" jdbcType="VARCHAR" property="email" />
-    <result column="TYPE" jdbcType="DECIMAL" property="type" />
+    <result column="TYPE" jdbcType="CHAR" property="type" />
     <result column="LAST_LOGIN_IP" jdbcType="VARCHAR" property="lastLoginIp" />
     <result column="CURRENT_LOGIN_IP" jdbcType="VARCHAR" property="currentLoginIp" />
     <result column="LAST_LOGIN_TIME" jdbcType="TIMESTAMP" property="lastLoginTime" />
@@ -61,12 +61,41 @@
     <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
     <result column="SIGN_IMAGE" jdbcType="BLOB" property="signImage" />
     <result column="ROLE_NAME" jdbcType="VARCHAR" property="roleName" />
+    <result column="CREATOR" jdbcType="VARCHAR" property="creator" />
   </resultMap>
 
-  <select id="queryUserList" resultMap="UserRoleVoMap">
-    SELECT U.*,R.ROLE_NAME FROM USER_INFO U
+  <select id="queryUserList" parameterType="com.xin.note.security.entity.vo.UserRoleVo" resultMap="UserRoleVoMap">
+    SELECT U.*,R.ROLE_NAME,U2.NAME AS CREATOR FROM USER_INFO U
       LEFT JOIN USER_ROLE UR ON U.ID = UR.USER_ID
       LEFT JOIN ROLE_INFO R ON UR.ROLE_ID = R.ID
-      WHERE U.DELETED_FLAG = '0' ORDER BY U.GMT_CREATE
+      LEFT JOIN USER_INFO U2 ON U2.ID = U.CREATE_BY
+      WHERE U.DELETED_FLAG = '0'
+       <trim>
+          <if test="userName != null and userName != ''">
+              AND U.USER_NAME = #{userName, jdbcType=VARCHAR}
+          </if>
+          <if test="name != null and name != ''">
+              AND U.NAME = #{name, jdbcType=VARCHAR}
+          </if>
+          <if test="roleName != null and roleName != ''">
+              AND R.ROLE_NAME = #{roleName, jdbcType=VARCHAR}
+          </if>
+          <if test="type != null and type != ''">
+              AND U.TYPE = #{type, jdbcType=CHAR}
+          </if>
+          <if test="usingFlag != null and usingFlag != ''">
+              AND U.USING_FLAG = #{usingFlag, jdbcType=CHAR}
+          </if>
+          <if test="creator != null and creator != ''">
+              AND (U.CREATE_BY = #{creator, jdbcType=VARCHAR} OR U2.NAME = #{creator, jdbcType=VARCHAR})
+          </if>
+          <if test="gmtCreateStart != null ">
+              AND U.GMT_CREATE &gt;= #{gmtCreateStart, jdbcType=TIMESTAMP}
+          </if>
+          <if test="gmtCreateEnd != null ">
+              AND U.GMT_CREATE &lt;= #{gmtCreateEnd, jdbcType=TIMESTAMP}
+          </if>
+       </trim>
+       ORDER BY U.GMT_CREATE
   </select>
 </mapper>

@@ -10,5 +10,5 @@ import java.util.List;
 
 public interface UserInfoService extends MultiLanguageService<UserInfo> {
 
-    public Page<UserRoleVo> queryUserList(Integer pageNo, int pageSize);
+    public Page<UserRoleVo> queryUserList(Integer pageNo, int pageSize, UserRoleVo userRoleVo);
 }

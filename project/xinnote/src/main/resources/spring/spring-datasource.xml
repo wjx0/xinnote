@@ -52,6 +52,12 @@
             </list>
         </property>
     </bean>
+
+    <aop:config proxy-target-class="true">
+        <aop:advisor advice-ref="druid-stat-interceptor"
+                     pointcut-ref="druid-stat-pointcut" />
+    </aop:config>
+
     <bean id="druid-stat-interceptor"
           class="com.alibaba.druid.support.spring.stat.DruidStatInterceptor">
     </bean>
@@ -64,12 +70,6 @@
             </list>
         </property>
     </bean>
-
-
-    <aop:config proxy-target-class="true">
-        <aop:advisor advice-ref="druid-stat-interceptor"
-                     pointcut-ref="druid-stat-pointcut" />
-    </aop:config>
 
     <!--使用oracle数据库一定要有下边的配置，否则插入语句自动生成sequence会有问题-->
     <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
